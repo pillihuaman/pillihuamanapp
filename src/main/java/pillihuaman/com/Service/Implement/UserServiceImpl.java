@@ -35,27 +35,39 @@ import pillihuaman.com.security.PasswordUtils;
 
 @Component
 public class UserServiceImpl implements UserService {
-	@Autowired
+	@Autowired(required = false)
 	private UserRepository userRepository;
 
 	@Autowired(required = false)
 	private UserProcessRepository userProcessRepository;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
 
 	@Override
 	public RespBase<RespUser> getUserByMail(String mail) {
 
+
 		RespBase<RespUser> respo = new RespBase<RespUser>();
-		User filtro = new User();
 
-		filtro.setMail(mail);
-		Example<User> example = Example.of(filtro);
-		List<User> lista = userRepository.findAll(example);
-		if (lista != null) {
+		try {
+			List<pillihuaman.com.basebd.user.domain.User> lis = userProcessRepository.findUserByMail(mail);
+			RespUser obj = new RespUser();
+			for (pillihuaman.com.basebd.user.domain.User user : lis) {
+				obj.setAlias(user.getAlias());
+				obj.setApi_Password(user.getApiPassword());
+				obj.setId_system(user.getIdSystem());
+				obj.setMail(user.getMail());
+				obj.setPassword(user.getPassword());
+				obj.setSal_Password(user.getSalPassword());
+				obj.setUsername(user.getUsername());
+			}
+			respo.setPayload(obj);
 
+		} catch (Exception e) {
+			respo.getStatus().setSuccess(Boolean.FALSE);
+			respo.getStatus().getError().getMessages().add(e.getMessage());
 		}
+		
 		return respo;
 	}
 
@@ -99,7 +111,9 @@ public class UserServiceImpl implements UserService {
 			pillihuaman.com.basebd.user.domain.User filtro = new pillihuaman.com.basebd.user.domain.User();
 			String salt = PasswordUtils.getSalt(30);
 			String apiPasword = PasswordUtils.generateSecurePassword(request.getPassword(), salt);
-			String Password = bCryptPasswordEncoder.encode(request.getPassword());
+			BCryptPasswordEncoder en = new BCryptPasswordEncoder() ;
+			
+			String Password = en.encode(request.getPassword());
 			filtro.setId(new ObjectId());
 			filtro.setAlias("");
 			filtro.setApiPassword(apiPasword);

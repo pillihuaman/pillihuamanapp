@@ -48,7 +48,7 @@ public class JwtAuthenticationController {
 	public ResponseEntity<?> createAuthenticationToken(@RequestHeader String username, @RequestHeader String password,  @RequestBody JwtRequest authenticationRequest) throws Exception {
 		authenticate(username, password,
 				authenticationRequest.getMail());
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getMail());
 		final String token = jwtTokenUtil.generateToken(userDetails);
 		AuthenticationResponse auth = new AuthenticationResponse();
 		auth.setToken(token);
@@ -72,7 +72,7 @@ public class JwtAuthenticationController {
 
 			//String codeString = bCryptPasswordEncoder.encode(password);
 
-			RespBase<RespUser> userResponse = userService.getUserByUserName(username);
+			RespBase<RespUser> userResponse = userService.getUserByMail(mail);
 					
 			if (userResponse != null && userResponse.getPayload() != null) {
 				if (!MaestrosUtilidades.isEmpty(userResponse.getPayload().getUsername())) {
@@ -99,7 +99,7 @@ public class JwtAuthenticationController {
 			} else {
 				throw new UsernameNotFoundException("Users not found with username: " + username);
 			}
-		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+			//authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(mail, password));
 
 
 		} catch (DisabledException e) {

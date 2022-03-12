@@ -1,10 +1,8 @@
-pillihuaman\com\Adapters\EntityDBConnection.class
 pillihuaman\com\JwtAuthenticationEntryPoint.class
 pillihuaman\com\model\request\ReqUser.class
 pillihuaman\com\model\response\RespBase$Status$Error.class
 pillihuaman\com\audit\AuditEntityInterceptor$1.class
 pillihuaman\com\model\response\RespBase$Status.class
-pillihuaman\com\Adapters\OracleAdapter.class
 pillihuaman\com\Help\EnumErrores.class
 pillihuaman\com\basebd\user\domain\User.class
 pillihuaman\com\Help\ConvertClass.class
@@ -13,7 +11,6 @@ pillihuaman\com\JwtRequestFilter.class
 pillihuaman\com\AppPropertiesConfig.class
 pillihuaman\com\model\response\RespUser.class
 pillihuaman\com\Help\Constantes.class
-pillihuaman\com\Repository\ColorRepository.class
 pillihuaman\com\security\MyJsonWebToken$Aplication.class
 pillihuaman\com\model\request\ReqBase.class
 pillihuaman\com\model\response\RespBase$Trace.class
@@ -21,7 +18,6 @@ pillihuaman\com\security\MyJsonWebToken.class
 pillihuaman\com\Application.class
 pillihuaman\com\Log\Log4J2PropertiesConf.class
 pillihuaman\com\model\response\RespGetList.class
-pillihuaman\com\security\Role.class
 pillihuaman\com\Service\UserService.class
 pillihuaman\com\audit\AuditableEntity.class
 pillihuaman\com\Controller\HelloWorldController.class
@@ -45,12 +41,9 @@ pillihuaman\com\BusinessEntity\model\Color.class
 pillihuaman\com\BusinessEntity\model\User.class
 pillihuaman\com\audit\AuditEndpointInterceptor.class
 pillihuaman\com\model\response\RespBase.class
-pillihuaman\com\Service\ColorService.class
 pillihuaman\com\Controller\GeneratePasswordController.class
 pillihuaman\com\RequestResponse\JwtRequest.class
 pillihuaman\com\JwtTokenUtil.class
-pillihuaman\com\Service\Implement\ColorServiceImpl.class
-pillihuaman\com\Adapters\MySqlAdapter.class
 pillihuaman\com\security\MyJsonWebToken$User.class
 pillihuaman\com\security\VerifyProvidedPassword.class
 pillihuaman\com\audit\AuditEntityInterceptor$TableLog.class
